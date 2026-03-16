@@ -1,0 +1,36 @@
+{% extends "estudo_Djangos/base.html" %}
+
+{% block header %}
+   <h2> Tópicos: {{topic}}</h2>
+{% endblock header %}
+
+{% block content %}
+
+   <p> Anotações:</p>
+    <p><a href= "{% url 'new_entry' topic.id %}">Adicionar novas anotações </a></p>
+    
+    
+       {% for entry in entries %}
+          <div class="panel panel-default">
+
+        
+             <div class = "panel-heading"> 
+                  <h3>
+                     {{entry.date | date:'M d, Y H:i'}}
+                     
+                  </h3> 
+                  <small>
+                     <a href= "{% url 'edit_entry' entry.id %}"> Editar anotações</a> 
+                  </small> 
+             </div> 
+
+             <div class="panel-body"> {{entry.text | linebreaks }}</div>
+
+            </div>     
+        {% empty %}
+           <p>Não há entradas para o tópico</p> 
+        {% endfor %}
+
+    
+
+{% endblock content %}

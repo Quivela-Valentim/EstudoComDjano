@@ -1,0 +1,31 @@
+{% extends "estudo_Djangos/base.html" %}
+{% load bootstrap3 %}
+
+{% block header   %}
+   <h1 style ="text-align: center"> Crie a sua conta </h1>
+{% endblock header  %}
+
+{% block content  %}
+    
+      {% if form.errors %}
+         <p class="aviso" style = "color: red">Os  dados de usuário estão incorrectos. Por favor, tente novamente.</p>
+         <p class="aviso" style = "color: red"> O nome não deve conter caracteres especiais como (.#""€).</p>
+         <p class="aviso" style = "color: red">A senha deve ter mais de 8 caracteres e 
+            senha da confirmação dever igual ao da senha digitada primeiro.</p>
+      {% endif %}
+
+       <form action ="{% url 'register' %}" method = "post" class = "ul-none form">
+           {% csrf_token %}
+           {% bootstrap_form form %}
+
+           {% comment "" %}       
+             {{form.as_p}}
+           {% endcomment %} 
+          
+           {% buttons  %}
+              <button name="submit" class= "btn btn-primary">Registar</button>
+           {% endbuttons  %}
+
+           <input type="hidden" name= "next" value ="{% url 'index' %}" />
+       </form>
+{% endblock content  %}

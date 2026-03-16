@@ -1,0 +1,28 @@
+{% extends "estudo_Djangos/base.html" %}
+
+{% load bootstrap3 %}
+
+{% block header  %}
+    <h2> Faça login com a sua conta </h2>
+{% endblock header %}
+
+{% block content  %}
+    
+      {% if form.errors %}
+         <p>Os ses dados de usuário estão incorrectos. Por favor, tente novamente.</p>
+      {% endif %}
+
+       <form action ="{% url 'login' %}" method = "post"  class = "form">
+           {% csrf_token %}
+           {% bootstrap_form form %}
+            {% comment "" %}
+                {{form.as_p}}
+            {% endcomment %}
+          
+           {% buttons %}  
+           <button name="submit" class = "btn btn-primary">Entrar</button>
+           {% endbuttons %}
+
+           <input type="hidden" name= "next" value ="{% url 'index' %}" />
+       </form>
+{% endblock content  %}

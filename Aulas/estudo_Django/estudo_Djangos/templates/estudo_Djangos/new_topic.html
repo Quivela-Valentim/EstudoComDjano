@@ -1,0 +1,22 @@
+{% extends "estudo_Djangos/base.html" %}
+{% load bootstrap3%}
+{% block header  %}
+   <h2>Adicione novos tópicos</h2>
+{% endblock header %}
+
+{%block content %}
+   
+     <form action="{% url 'new_topic' %}" method="post" class= "form">
+        {% csrf_token %}
+
+        {%bootstrap_form form%}
+        {% comment %}
+        {{ form.as_p }}
+        {% endcomment %}
+
+        {% buttons %}  
+           <button name="submit " class= "btn btn-primary">Adicionar</button>
+        {% endbuttons %}
+     </form>
+
+{%endblock content %}

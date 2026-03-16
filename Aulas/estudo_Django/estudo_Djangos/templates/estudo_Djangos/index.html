@@ -1,0 +1,19 @@
+{% extends "estudo_Djangos/base.html" %}
+
+ {% block header %}
+   <div class= "jumbotron">
+      <h1>Anotações de Cadeiras </h1>
+   </div>
+ {% endblock header  %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+         <h3>Faça os seus tópicos e as suas anotações de tudo que você aprendeu</h3>
+    {% else %}
+         <h3>Faça os seus tópicos e as suas anotações de tudo que você aprendeu</h3>
+         <h3>
+            <a href= "{% url 'register' %}">Crie aqui a sua conta</a> para  fazer as suas anotações
+         </h3>
+    {% endif%}
+{% endblock content %}
+
