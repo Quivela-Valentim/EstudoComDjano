@@ -1,0 +1,29 @@
+{% extends "estudo_Djangos/base.html" %}
+
+{% block content %}
+
+    
+  <p> Tópicos: {{topic}}</p>
+   <p> Anotações:</p>
+    <p><a href= "{% url 'new_entry' topic.id %}">Adicionar novas anotações </a></p>
+    
+    <ul>
+       {% for entry in entries %}
+          <li> 
+        
+             <p> {{entry.date | date:'M d, Y H:i'}}</p> 
+             <p> {{entry.text | linebreaks }}</p>
+             <p>
+                <a href= "{% url 'edit_entry' entry.id %}">{{topic}}</a>
+             </p>
+
+
+
+          </li>
+        {% empty %}
+           <li>Não há entradas para o tópico</li>
+       {% endfor %}
+
+    </ul>
+
+{% endblock content %}
